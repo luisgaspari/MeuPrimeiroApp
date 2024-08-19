@@ -3,15 +3,16 @@ import { Button } from "react-native";
 interface StyledButtonProps {
     text: string
     onclick: () => void
-    color: string
+    color?: string
 }
 
-export default function StyleButton({ text, onclick, color }: StyledButtonProps) {
+export default function StyledButton({ text, onclick, color }: StyledButtonProps) {
     return (
         <Button
-            color={color}
-            onPress={onclick}
             title={text}
+            onPress={onclick}
+            color={color}
         />
     )
 }
+

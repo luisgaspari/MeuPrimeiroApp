@@ -1,8 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import StyledInput from "../components/styled-input";
-import StyleButton from "../components/styled-button";
+import StyledButton from "../components/styled-button";
+import StyledPressable from "../components/styled-pressable";
 import { router } from "expo-router";
+import React from "react";
 
 export default function Login() {
 
@@ -10,12 +12,16 @@ export default function Login() {
         router.replace('home');
     }
 
+    const defaultColor = "#4ab2d2";
+
     return (
         <View style={styles.container}>
-            <Text>Login</Text>
-            <StyledInput placeholder="Digite seu login" onChangeText={(text) => console.log(text)} />
-            <StyledInput placeholder="Digite seu senha" onChangeText={(text) => console.log(text)} />
-            <StyleButton text="Entrar" onclick={handleLogin} color="blue" />
+            <Image style={styles.logo} source={require("../assets/react_1.png")} />
+            <Text style={[{ color: defaultColor || 'blue' }, styles.title]}>Login</Text>
+            <StyledInput placeholder="Digite seu login" onChangeText={(text) => console.log(text)} color={defaultColor} />
+            <StyledInput placeholder="Digite seu senha" onChangeText={(text) => console.log(text)} color={defaultColor} />
+            <StyledPressable text="Entrar" onpress={handleLogin} color={defaultColor} />
+            {/* <StyledButton text="Entrar" onclick={handleLogin} color={defaultColor} /> */}
             <StatusBar style="auto" />
         </View>
     );
@@ -28,4 +34,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    title: {
+        fontSize: 35,
+        fontWeight: "bold",
+        textAlign: "center",
+        margin: 20,
+    },
+    logo: {
+        width: 200,
+        height: 200,
+        margin: 10,
+    }
 });
